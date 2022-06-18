@@ -1,4 +1,5 @@
 let dropArea;
+let clickArea;
 let addedFile;
 let googleToken;
 
