@@ -29,6 +29,8 @@ Para esta aplicación se han utilizado Javascript, html y css complementados con
 ## Nota sobre el desarrollo
 Se han utilizado diferentes maneras de interactuar con el DOM y diferentes maneras de capturar eventos, utilizando tanto jQuery como Vanilla JS para demostrar el uso de diferentes maneras de desarrollar las mismas operativas.
 
+Se ha escogido una distribución simple y clara de carpetas al utilizarse pocos tipos de archivos, en la carpeta **assets** se encuentran las imágenes SVG, en la carpeta **styles** los css y en la carpeta **js** se encuentran los scripts y la configuración de las partículas dentro de otra carpeta.
+
 ## Contribución y Apoyo
 Cualquier persona puede contribuir o apoyar el proyecto de la manera que quiera.
 
