@@ -3,13 +3,13 @@ const login = document.querySelector('.formLogin');
 const signup = document.querySelector('.formSignup');
 
 window.onload = function () {
-    checkRememberLogin();
-    displaySignup();
-
     // Load particles effect
     let clause = window.innerWidth < 768;
     config.particles.number.value = clause ? 80 : 150;
     particlesJS('particle', config);
+    
+    checkRememberLogin();
+    displaySignup();
 };
 
 // Check login items, if user is signed it will be redirected to Drop Zone
@@ -26,7 +26,7 @@ function checkRememberLogin() {
 
 function displaySignup() {
     login.style.display = 'none';
-    sign;up.style.display = 'flex';
+    signup.style.display = 'flex';
 };
 
 function displayLogin() {
