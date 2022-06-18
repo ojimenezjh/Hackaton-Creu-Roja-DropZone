@@ -7,19 +7,19 @@ let googleToken;
 window.onresize = function () {
     $('img').stop(true).css({ top: '50%', left: '50%' });
     moveAllSvg();
-};
+}
 
 window.onload = function () {
     checkLogin();
     moveAllSvg();
     dragDropArea();
-};
+}
 
 // Events for capturing the file
 function dragDropArea() {
     dropArea = document.querySelector('.dropzone');
     clickArea = document.getElementById('dropzoneClick');
-    dropArea.ondblclick = function(){clickArea.click()};
+    dropArea.ondblclick = function(){clickArea.click()}
 
     dropArea.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ function dragDropArea() {
         e.preventDefault();
         addFile(e);
     });
-};
+}
 
 
 function addFile(e){
@@ -60,7 +60,7 @@ function addFile(e){
 function colorPicking() {
     const colorPicked = $('#colorpicker').val();
     $('.dropzone').css('box-shadow', `0 0 60px ${colorPicked}`);
-};
+}
 
 // Check if user is logged getting login items from storage, otherwise it will redirect to login page
 function checkLogin() {
@@ -112,7 +112,7 @@ function moveSvg(svg) {
     svgMove.animate({ top: nh, left: nw }, 2500, function () {
         moveSvg(svg);
     });
-};
+}
 
 function googleLoginPopup() {
     Swal.fire({
@@ -147,7 +147,7 @@ function parseJwt(token) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
-};
+}
 
 // Get google user info from success login into google account
 function handleCredentialResponse(response) {
@@ -182,7 +182,7 @@ function handleCredentialResponse(response) {
         },
         timer: 1500
     });
-};
+}
 
 // Upload file to google drive providing the google user access token
 function uploadFile() {
@@ -192,7 +192,7 @@ function uploadFile() {
         var metadata = {
             'name': addedFile.name, // Filename at Google Drive
             'mimeType': addedFile.type, // mimeType at Google Drive
-        };
+        }
 
         var form = new FormData();
         form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
@@ -233,7 +233,7 @@ function uploadFile() {
             timer: 3000
         });
     }  
-};
+}
 
 function uploadFailPopup(){
     document.getElementsByTagName('h1')[0].style.display = 'none';
@@ -260,18 +260,3 @@ function uploadFailPopup(){
         }
       });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
