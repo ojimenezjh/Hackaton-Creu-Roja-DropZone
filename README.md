@@ -45,6 +45,5 @@ Cualquier persona puede contribuir o apoyar el proyecto de la manera que quiera.
 ```
 
 ## Licencia
-
-Inlcuir la licéncia y el link a esta
-[MIT](https://opensource.org/licenses/MIT)
+Para leer la licencia, hacer click en el siguiente link:
+[MIT License]([https://opensource.org/licenses/MIT](https://github.com/ojimenezjh/Hackaton-Creu-Roja-DropZone/blob/main/LICENSE))
