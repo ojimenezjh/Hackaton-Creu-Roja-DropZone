@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="text/javascript" src="./js/variables.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="./styles/dropzone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Drop Zone</title>
+</head>
+
+<body>
+    <div class="dropzoneContainer">
+        <div class="colorpicker">
+            <label for="colorpicker">Cambia el color del aura</label>
+            <input onchange="colorPicking()" id="colorpicker" type="color" value="#4F934A">
+        </div>
+        <input type="file" id="dropzoneClick" style="display:none"/> 
+        <div class="dropzone" draggable="true">
+            <h1>ARRASTRA TUS ARCHIVOS AQUÍ O HAZ CLICK PARA SELECCIONARLOS</h1>
+            <img id="svg1" src="./assets/svg/css3.svg" alt="">
+            <img id="svg2" src="./assets/svg/git.svg" alt="">
+            <img id="svg3" src="./assets/svg/Group.svg" alt="">
+            <img id="svg4" src="./assets/svg/php.svg" alt="">
+            <img id="svg5" src="./assets/svg/sass.svg" alt="">
+            <img id="svg6" src="./assets/svg/tensorflow.svg" alt="">
+            <img id="svg7" src="./assets/svg/typescript.svg" alt="">
+            <img id="svg8" src="./assets/svg/unknown.svg" alt="">
+            <img id="svg9" src="./assets/svg/workbench.svg" alt="">
+            <img id="svg10" src="./assets/svg/python.svg" alt="">
+        </div>
+        <button onclick="uploadFile()" type="submit">
+            Subir archivos
+        </button>
+    </div>
+    <div class="descriptionContainer">
+        <h1 id="dropzoneTitle">Bienvenido a DDrop</h1>
+        <p>Para subir tus archivos de forma simple a drive, puedes hacer LogIn a través de Google.</p>
+        <div id="separator"></div>
+        <div class="googleUserContainer">
+            <label id="googleEmail" for="googleImg"></label>
+            <img id="googleImg" src="" alt="Imagen usuario de google">
+        </div>
+        <button id="googleButtonPopup" onclick="googleLoginPopup()" type="submit">
+            Login con google
+        </button>
+        <button id="logout" onclick="logOut()" type="button">Cerrar sesión</button>
+    </div>
+    <script src="./js/dropzone.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js"></script>
+
+</body>
+
+</html>

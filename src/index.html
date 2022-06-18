@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/loginsignup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Login/Register</title>
+</head>
+
+<body>
+    <div id="particle"></div>
+    <div class="container">
+        <div class="forms">
+            <div class="formLogin">
+                <h1>Inicia sesión</h1>
+
+                <form>
+                    <div class="input-field">
+                        <input id="userSignin" type="text" placeholder="Inserta tu usuario" required>
+                    </div>
+                    <div class="input-field">
+                        <input id="passwordSignin" type="password" class="password" placeholder="Inserta tu contraseña"
+                            required>
+                    </div>
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="logCheck">
+                        <label for="logCheck" class="text">Recuérdame</label>
+                    </div>
+
+                    <div class="input-field">
+                        <button type="button" onclick="signIn()">Login</button>
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span>¿No estás registrado?
+                        <a href="#" onclick="displaySignup()">Regístrate</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="formSignup">
+                <h1>Regístrate</h1>
+
+                <form action="#">
+                    <div class="input-field">
+                        <input id="userSignup" type="text" placeholder="Introduce tu usuario" required>
+                    </div>
+                    <div class="input-field">
+                        <input id="passwordSignup" type="password" class="password" placeholder="Crea una contraseña"
+                            required>
+                    </div>
+                    <div class="input-field">
+                        <input id="passwordSignupRepeat" type="password" class="password"
+                            placeholder="Confirma la contraseña" required>
+                    </div>
+
+                    <div class="input-field">
+                        <button onclick="signUp()" type="button">Registro</button>
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span>¿Tienes cuenta?
+                        <a href="#" onclick="displayLogin()">Inicia sesión</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/loginsignup.js"></script>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="./js/particles/particles.js"></script>
+</body>
+
+</html>
