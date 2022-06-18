@@ -45,6 +45,8 @@ Cualquier persona puede contribuir o apoyar el proyecto de la manera que quiera.
 - <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 ```
+## Puntuación de Codefactor
+[![CodeFactor](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone/badge/main)](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone/overview/main)
 
 ## Licencia
 Para leer la licencia, hacer click en el siguiente link:
