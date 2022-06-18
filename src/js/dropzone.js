@@ -133,7 +133,7 @@ function googleLogin() {
     });
     google.accounts.id.renderButton(
         document.getElementById("googleButton"),
-        { theme: "outline", size: "large", width: "1000px" }  // customization attributes
+        { theme: "outline", size: "large" }  // customization attributes
     );
     google.accounts.id.prompt(); // also display the One Tap dialog
 }
