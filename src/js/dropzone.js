@@ -51,7 +51,7 @@ function addFile(e){
     let fileReader = new FileReader();
     fileReader.onload = (result) => {
         console.log(addedFile, result);
-        document.getElementsByTagName('h1')[0].innerHTML = `Archivo ${addedFile.name} listo para subir`;
+        document.getElementsByTagName('h1')[0].innerHTML = `Archivo <span style="color: cyan">${addedFile.name}</span> listo para subir`;
     }
     fileReader.readAsDataURL(addedFile);
 }
@@ -245,18 +245,5 @@ function uploadFailPopup(){
         }
       });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
