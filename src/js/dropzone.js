@@ -205,7 +205,7 @@ function uploadFile() {
                 body: form,
             }).then((response) => {
                 if (response && response.status >= 200 && response.status < 300){
-                    document.getElementsByTagName('h1')[0].innerHTML = `Tu archivo ${addedFile.name} se ha subido correctamente`;
+                    document.getElementsByTagName('h1')[0].innerHTML = `Tu archivo <span style="color: cyan">${addedFile.name}</span> se ha subido correctamente`;
                 } else{
                 uploadFailPopup();
                 }
