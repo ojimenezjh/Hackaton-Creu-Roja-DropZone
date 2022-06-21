@@ -7,7 +7,14 @@ Aplicación web con diseño moderno y responsive que nos permite hacer un regist
 Éste proyecto está basado en el diseño facilitado por https://nuwe.io --> https://www.figma.com/file/0SZrgYVwjp2mz1ohVi8WSw?node-id=51:4 para la participación en el Hackathon de *Barcelona Digital Talent*.
 
 ## Uso
-Se puede ejecutar el proyecto en local simplemente clonando este repositorio y ejecutando el archivo index.html.  
+Se puede ejecutar el proyecto en local simplemente clonando este repositorio y ejecutando el siguiente pluguin de visual studio code o similar:  
+
+**Nombre: Live Server
+ID: ritwickdey.LiveServer
+Descripción: Launch a development local Server with live reload feature for static & dynamic pages
+Versión: 5.7.5
+Editor: Ritwick Dey
+Vínculo de VS Marketplace: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer**
 - **Leer el siguiente punto (Google API) para que la aplicación clonada sea totalmente funcional**
 
 ## Google API
