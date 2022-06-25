@@ -1,24 +1,27 @@
 let dropArea;
+let clickArea;
 let addedFile;
+let filesArray = [];
 let googleToken;
+let client;
 
 // Restart svg's animation from beggining everytime window is resized
 window.onresize = function () {
     $('img').stop(true).css({ top: '50%', left: '50%' });
     moveAllSvg();
-};
+}
 
 window.onload = function () {
     checkLogin();
     moveAllSvg();
     dragDropArea();
-};
+}
 
 // Events for capturing the file
 function dragDropArea() {
     dropArea = document.querySelector('.dropzone');
     clickArea = document.getElementById('dropzoneClick');
-    dropArea.onclick = function(){clickArea.click()};
+    dropArea.ondblclick = function () { clickArea.click() }
 
     dropArea.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -38,20 +41,29 @@ function dragDropArea() {
     clickArea.addEventListener('change', (e) => {
         e.preventDefault();
         addFile(e);
+        clickArea.value = null;
     });
-};
+}
 
-
-function addFile(e){
-    if (e.type == 'change') {
+function addFile(e) {
+    if (e.type == 'change' && e.target.files[0]) {
         addedFile = e.target.files[0];
+        filesArray.push(addedFile);
     } else {
         addedFile = e.dataTransfer.files[0];
+        filesArray.push(addedFile);
     }
     let fileReader = new FileReader();
     fileReader.onload = (result) => {
-        console.log(addedFile, result);
-        document.getElementsByTagName('h1')[0].innerHTML = `Archivo ${addedFile.name} listo para subir`;
+        // Pastel colors
+        let randomColor = "hsl(" + 360 * Math.random() + ',' +
+            (25 + 70 * Math.random()) + '%,' +
+            (85 + 10 * Math.random()) + '%)'
+        console.log(randomColor);
+        console.log(filesArray, result);
+        document.getElementsByTagName('h1')[0].innerHTML = `Archivo \n <span style="color: cyan">${addedFile.name}</span> \n listo para subir`;
+        document.getElementById('filesList').innerHTML += `<li id=listobject${filesArray.length - 1}>Archivo <span style="color: ${randomColor}">${addedFile.name}</span></li>`;
+
     }
     fileReader.readAsDataURL(addedFile);
 }
@@ -59,7 +71,7 @@ function addFile(e){
 function colorPicking() {
     const colorPicked = $('#colorpicker').val();
     $('.dropzone').css('box-shadow', `0 0 60px ${colorPicked}`);
-};
+}
 
 // Check if user is logged getting login items from storage, otherwise it will redirect to login page
 function checkLogin() {
@@ -72,9 +84,9 @@ function checkLogin() {
             location.href = 'index.html';
         }, 3000);
     } else if (localUserLoggedIn)
-        document.getElementById('dropzoneTitle').innerHTML += ' ' + localUserLoggedIn;
+        document.getElementById('dropzoneTitle').innerHTML += `<span style="color: cyan">\n${localUserLoggedIn}</span>`;
     else
-        document.getElementById('dropzoneTitle').innerHTML += ' ' + sessionUserLoggedIn;
+        document.getElementById('dropzoneTitle').innerHTML += `<span style="color: cyan">\n${sessionUserLoggedIn}</span>`;
 }
 
 function logOut() {
@@ -105,72 +117,36 @@ function moveSvg(svg) {
 
     let nh = Math.floor(Math.random() * h);
     let nw = Math.floor(Math.random() * w);
-    let randomColor = Math.floor(Math.random()*16777215).toString(16);
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-    svgMove.css({filter: `drop-shadow(0 0 0 #${randomColor})`});
+    svgMove.css({ filter: `drop-shadow(0 0 0 #${randomColor})` });
     svgMove.animate({ top: nh, left: nw }, 2500, function () {
         moveSvg(svg);
     });
-};
-
-function googleLoginPopup() {
-    Swal.fire({
-        title: 'Pulsa para iniciar sesión con Google',
-        html: `<div style="display: flex; justify-content:center; width:100%;">
-        <div id="googleButton"></div></div>`,
-        showCancelButton: true,
-        showConfirmButton: false,
-        cancelButtonText: `Cancelar`,
-    })
-    googleLogin();
 }
 
 // Render the google signin button inside a popup, client_id is provided by google cloud platform
 function googleLogin() {
-    google.accounts.id.initialize({
+    client = google.accounts.oauth2.initTokenClient({
         client_id: clientId,
+        scope: 'https://www.googleapis.com/auth/drive',
         callback: handleCredentialResponse
-    });
-    google.accounts.id.renderButton(
-        document.getElementById("googleButton"),
-        { theme: "outline", size: "large", width: "1000px" }  // customization attributes
-    );
-    google.accounts.id.prompt(); // also display the One Tap dialog
+    }).requestAccessToken();
 }
 
-// Decrypt the JWT for extracting useful data
-function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-};
-
-// Get google user info from success login into google account
+// Get google drive access from success login into google account
 function handleCredentialResponse(response) {
     swal.close();
 
-    googleToken = response.credential;
-    const responsePayload = parseJwt(googleToken);
+    googleToken = response.access_token;
 
-   /*  console.log(responsePayload);
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email); */
-
-    document.getElementById('googleEmail').innerHTML = responsePayload.email;
-    document.getElementById('googleImg').src = responsePayload.picture;
-    document.getElementById('googleButtonPopup').style.display = 'none'
-    document.querySelector('.googleUserContainer').style.display = 'flex'
+    document.getElementById('googleAccess').innerHTML = 'Acceso garantizado a tu Google drive';
+    document.getElementById('googleButtonPopup').style.display = 'none';
+    document.querySelector('.googleAccessContainer').style.display = 'flex';
 
     Swal.fire({
         icon: 'success',
-        title: `Bienvenido ${responsePayload.name}. Inicio de sesión correcto`,
+        title: `Autorizado el acceso a google drive. Inicio de sesión correcto`,
         showConfirmButton: false,
         heightAuto: false,
         showClass: {
@@ -181,50 +157,123 @@ function handleCredentialResponse(response) {
         },
         timer: 1500
     });
-};
+}
 
-// Upload file to google drive providing the google user access token
-function uploadFile() {
-    var fileContent = addedFile; // As a sample, upload a text file.
-    var file = new Blob([fileContent], { type: addedFile.type });
-    var metadata = {
-        'name': addedFile.name, // Filename at Google Drive
-        'mimeType': addedFile.type, // mimeType at Google Drive
-    };
+// Upload files to google drive providing the google user access token
+async function uploadFiles() {
+    if (filesArray.length > 0 && googleToken) {
 
-    var form = new FormData();
-    form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-    form.append('file', file);
-
-    try {
-        fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
-            method: 'POST',
-            headers: { 'Authorization': 'Bearer ' + googleToken },
-            body: form,
-        }).then((response) => {
-            if (response && response.status >= 200 && response.status < 300){
-                document.getElementsByTagName('h1')[0].innerHTML = `Tu archivo ${addedFile.name} se ha subido correctamente`;
-            } else{
-               uploadFailPopup();
-            }
-            return response.json();
-        }).then(function (val) {
-            console.log('response',val);
+        document.getElementById('filesList').innerHTML = '';
+        document.getElementsByTagName('h1')[0].innerHTML = '';
+        Swal.fire({
+            title: 'Subiendo archivos...',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            color: '#FFFFFF',
+            background: 'transparent',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            didOpen: () => {
+                Swal.showLoading()
+            },
         });
-    } 
-    catch (error) {
-        console.log('error', error);
-        uploadFailPopup();
-    } 
+        try {
+            let allFilesUploaded = false;
+            let uploadFail = true;
+            for (let index = 0; index < filesArray.length; index++) {
 
-   
-};
+                let fileContent = filesArray[index];
+                let file = new Blob([fileContent], { type: fileContent.type });
+                let metadata = {
+                    'name': fileContent.name, // Filename at Google Drive
+                    'mimeType': fileContent.type, // mimeType at Google Drive
+                }
 
-function uploadFailPopup(){
-    document.getElementsByTagName('h1')[0].style.display = 'none';
+                let form = new FormData();
+                form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+                form.append('file', file);
+
+                try {
+                    await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+                        method: 'POST',
+                        headers: { 'Authorization': 'Bearer ' + googleToken },
+                        body: form,
+                    }).then((response) => {
+                        return response.json();
+                    }).then(function (response) {
+                        console.log(response);
+                        if (response.kind == 'drive#file') {
+                            uploadFail = false;
+                            if (index == filesArray.length - 1) {
+                                allFilesUploaded = true;
+                            }
+                        }
+                    }).then(() => {
+                        if (allFilesUploaded && uploadFail == false) {
+                            document.getElementsByTagName('h1')[0].innerHTML = `<span style="color: #63e036">Tus archivos se han subido correctamente</span>`;
+                            Swal.close();
+                            setTimeout(() => {
+                                resetFiles();
+                            }, 1500);
+                        }
+                    });
+                    if (uploadFail == true) {
+                        throw 'fail uploading';
+                    }
+                } catch (error) {
+                    throw 'fail uploading';
+                }
+            }
+        }
+        catch (error) {
+            console.log('error', error);
+            uploadFailPopup();
+        }
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: `Debes adjuntar un archivo e iniciar sesión en google para continuar con el envío`,
+            showConfirmButton: false,
+            heightAuto: false,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            timer: 3000
+        });
+    }
+}
+
+function resetFiles() {
+    addedFile = '';
+    filesArray = [];
+    document.getElementsByTagName('h1')[0].innerHTML = 'ARRASTRA TUS ARCHIVOS AQUÍ O HAZ DOBLE CLICK PARA SELECCIONARLOS';
+    Swal.fire({
+        icon: 'info',
+        title: `Drop Zone limpia`,
+        showConfirmButton: false,
+        heightAuto: false,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        },
+        timer: 1500
+    });
+}
+
+function uploadFailPopup() {
+    document.getElementsByTagName('h1')[0].innerHTML = '';
     Swal.fire({
         title: 'Ups, algo ha salido mal',
-        text: 'No hemos podido subir tu archivo, revisa el formato o bien inténtalo de nuevo ',
+        text: 'No hemos podido subir tus archivos, revisa el formato e inténtalo de nuevo ',
         width: '80%',
         padding: '2em',
         confirmButtonText: 'Cerrar',
@@ -233,17 +282,17 @@ function uploadFailPopup(){
         background: '#232730',
         target: '.dropzone',
         customClass: {
-          title: 'errortitle',
-          container: 'errorpopup',
-          confirmButton: 'closepopup'
+            title: 'errortitle',
+            container: 'errorpopup',
+            confirmButton: 'closepopup'
         },
         toast: true,
         position: 'center'
-      }).then((result) => {
-        if (result.isConfirmed){
-            document.getElementsByTagName('h1')[0].style.display = 'inline';
+    }).then((result) => {
+        if (result.isConfirmed) {
+            resetFiles();
         }
-      });
+    });
 }
 
 

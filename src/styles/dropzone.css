@@ -33,10 +33,14 @@ body {
     box-shadow: 0 0 60px #4F934A;
 }
 
+#filesList{
+    z-index: 10;
+    width: 95%;
+}
+
 .colorpicker {
     position: absolute;
     top: 2%;
-    width: 100%;
 }
 
 .colorpicker>input {
@@ -69,36 +73,54 @@ body {
 }
 
 .dropzone>h1 {
+    white-space: pre-line;
+    z-index: 10;
     font-style: normal;
     text-align: center;
     font-weight: 500;
     font-size: 2.5vw;
+    max-width: 95%;
+    max-height: 90%;
+    overflow: auto;
 }
 
-.dropzoneContainer>button {
+.dropzoneButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropzoneContainer>div>button {
     font-family: 'Montserrat';
     font-weight: 700;
     font-size: 20px;
     color: #FFFFFF;
-    margin-top: 10vh;
-    height: 7vh;
-    width: 100%;
+    margin-top: 7vh;
+    height: 60px;
+    width: 48%;
     background-color: #569B51;
     border-radius: 5px;
     border-style: none;
 }
 
-.dropzoneContainer>button:hover {
+.dropzoneContainer>div>button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px #4F934A;
     cursor: pointer;
+}
+
+.dropzone #filesList {
+    position: absolute;
+    max-height: 38%;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
 }
 
 .descriptionContainer {
     display: flex;
     flex-direction: column;
     align-self: center;
-    height: 45vh;
+    height: 50%;
     width: 30vw;
 }
 
@@ -118,7 +140,8 @@ body {
     margin: 20px 0 40px 0;
 }
 
-.googleUserContainer {
+.googleAccessContainer {
+    color: cyan;
     font-size: 1.5vw;
     display: none;
     flex-direction: row;
@@ -126,12 +149,6 @@ body {
     justify-content: center;
     gap: 20px;
     margin-bottom: 15px;
-}
-
-.googleUserContainer>#googleImg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
 }
 
 .descriptionContainer>button {
@@ -144,7 +161,7 @@ body {
     font-weight: 700;
     font-size: 15px;
     color: #FFFFFF;
-    height: 100%;
+    height: 60px;
     width: 100%;
     background-color: transparent;
     border: 1px solid white;
@@ -166,20 +183,37 @@ body {
     body {
         flex-direction: column;
     }
-    .dropzoneContainer{
+
+    .dropzoneContainer {
         width: 100%;
     }
-    .dropzone>h1{
+
+    .dropzone>h1 {
         font-size: 20px;
     }
-    .dropzoneContainer>button {
-        margin-top: 5vh;
+
+    .dropzoneContainer>div>button {
+        width: 100%;
+        margin-top: 30px;
     }
-    .descriptionContainer{
+
+    .dropzoneButtons {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .descriptionContainer {
+        text-align: center;
         width: 100%;
     }
+
     .descriptionContainer>h1 {
+        white-space: pre-line;
         margin-top: 30px;
         font-size: 24px;
     }
-  }
+
+    .googleAccessContainer {
+        font-size: 20px;
+    }
+}

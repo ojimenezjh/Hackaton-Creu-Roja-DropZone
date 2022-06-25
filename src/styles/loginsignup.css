@@ -34,7 +34,7 @@ body {
 .container .forms {
     font-family: 'Montserrat';
     font-weight: 700;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 16px;
     letter-spacing: 0.4px;
     display: flex;
@@ -95,4 +95,10 @@ body {
 a {
     color: #4F934A;
     text-decoration: none;
+}
+
+.login-signup {
+    text-align: center;
+    width: 100%;
+    max-width: 330px;
 }

@@ -20,9 +20,10 @@
             <label for="colorpicker">Cambia el color del aura</label>
             <input onchange="colorPicking()" id="colorpicker" type="color" value="#4F934A">
         </div>
-        <input type="file" id="dropzoneClick" style="display:none"/> 
+        <input type="file" id="dropzoneClick" style="display:none" />
         <div class="dropzone" draggable="true">
-            <h1>ARRASTRA TUS ARCHIVOS AQUÍ O HAZ CLICK PARA SELECCIONARLOS</h1>
+            <h1>ARRASTRA TUS ARCHIVOS AQUÍ O HAZ DOBLE CLICK PARA SELECCIONARLOS</h1>
+            <ul id="filesList"></ul>
             <img id="svg1" src="./assets/svg/css3.svg" alt="">
             <img id="svg2" src="./assets/svg/git.svg" alt="">
             <img id="svg3" src="./assets/svg/Group.svg" alt="">
@@ -34,27 +35,30 @@
             <img id="svg9" src="./assets/svg/workbench.svg" alt="">
             <img id="svg10" src="./assets/svg/python.svg" alt="">
         </div>
-        <button onclick="uploadFile()" type="submit">
-            Subir archivos
-        </button>
+        <div class="dropzoneButtons">
+            <button id="uploadFiles" onclick="uploadFiles()" type="submit">
+                Subir archivos
+            </button>
+            <button id="resetFiles" onclick="resetFiles()" type="submit">
+                Resetear Drop Zone
+            </button>
+        </div>
     </div>
     <div class="descriptionContainer">
         <h1 id="dropzoneTitle">Bienvenido a DDrop</h1>
         <p>Para subir tus archivos de forma simple a drive, puedes hacer LogIn a través de Google.</p>
         <div id="separator"></div>
-        <div class="googleUserContainer">
-            <label id="googleEmail" for="googleImg"></label>
-            <img id="googleImg" src="" alt="Imagen usuario de google">
+        <div class="googleAccessContainer">
+            <label id="googleAccess"></label>
+            <!-- <img id="googleImg" src="" alt="Imagen usuario de google"> -->
         </div>
-        <button id="googleButtonPopup" onclick="googleLoginPopup()" type="submit">
-            Login con google
+        <button id="googleButtonPopup" onclick="googleLogin()" type="submit">
+            Autorizar Google drive
         </button>
         <button id="logout" onclick="logOut()" type="button">Cerrar sesión</button>
     </div>
     <script src="./js/dropzone.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js"></script>
-
 </body>
 
 </html>

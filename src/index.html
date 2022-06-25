@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="text/javascript" src="./js/variables.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/loginsignup.css">
@@ -43,7 +45,11 @@
                     <span>¿No estás registrado?
                         <a href="#" onclick="displaySignup()">Regístrate</a>
                     </span>
+                    <span>
+                        O inicia sesión con Google
+                    </span>
                 </div>
+                <span id="googleButton"></span>
             </div>
 
             <!-- Registration Form -->
