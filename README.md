@@ -53,7 +53,7 @@ Cualquier persona puede contribuir o apoyar el proyecto de la manera que quiera.
 - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 ```
 ## Puntuación de Codefactor
-[![CodeFactor](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone/badge/main)](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone/overview/main)
+[![CodeFactor](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone/badge)](https://www.codefactor.io/repository/github/ojimenezjh/hackaton-creu-roja-dropzone)
 
 ## Licencia
 Para leer la licencia, hacer click en el siguiente link:
