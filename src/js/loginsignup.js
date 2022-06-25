@@ -11,7 +11,7 @@ window.onload = function () {
     particlesJS('particle', config);
     checkRememberLogin();
     displayLogin();
-};
+}
 
 // Check login items, if user is signed it will be redirected to Drop Zone
 function checkRememberLogin() {
@@ -23,18 +23,18 @@ function checkRememberLogin() {
     } else if (sessionUserLoggedIn) {
         location.href = 'dropzone.html';
     }
-};
+}
 
 function displaySignup() {
     login.style.display = 'none';
     signup.style.display = 'flex';
-};
+}
 
 function displayLogin() {
     googleLogin();
     login.style.display = 'flex';
     signup.style.display = 'none';
-};
+}
 
 // Render the google signin button inside a popup, client_id is provided by google cloud platform
 function googleLogin() {

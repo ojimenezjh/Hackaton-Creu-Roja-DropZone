@@ -107,4 +107,4 @@ var config = {
         },
     },
     retina_detect: true,
-};
+}
