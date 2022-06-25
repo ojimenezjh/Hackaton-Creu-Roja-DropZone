@@ -44,7 +44,7 @@ function googleLogin() {
     });
     google.accounts.id.renderButton(
         document.getElementById("googleButton"),
-        { theme: "outline", size: "large", width: "280px", shape: "pill", theme: "filled_black" }  // customization attributes
+        { size: "large", width: "280px", shape: "pill", theme: "filled_black" }  // customization attributes
     );
     google.accounts.id.prompt(); // also display the One Tap dialog
 }
