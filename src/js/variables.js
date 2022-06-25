@@ -1,2 +1,2 @@
 // Google OAuth2 client id
-var clientId = 'fffffff.apps.googleusercontent.com'
+var clientId = 'YOUR_CLIENT_ID.apps.googleusercontent.com'
