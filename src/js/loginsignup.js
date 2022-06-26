@@ -1,7 +1,7 @@
 
 const login = document.querySelector('.formLogin');
 const signup = document.querySelector('.formSignup');
-const remember = document.getElementById('logCheck').checked;
+const remember = document.getElementById('logCheck');
 
 window.onload = function () {
     // Load particles effect
@@ -70,7 +70,7 @@ function handleCredentialResponse(response) {
      console.log("Image URL: " + responsePayload.picture);
      console.log("Email: " + responsePayload.email); */
     const username = responsePayload.name;
-    if (remember) {
+    if (remember.checked) {
         localStorage.setItem('dropzoneLoggedIn', username);
     }
     sessionStorage.setItem('dropzoneLoggedIn', username);
@@ -87,7 +87,7 @@ function signIn() {
     const decryptedStoredPassword = atob(storedPassword);
 
     if (password == decryptedStoredPassword && username == storedUsername) {
-        if (remember) {
+        if (remember.checked) {
             localStorage.setItem('dropzoneLoggedIn', username);
         }
         sessionStorage.setItem('dropzoneLoggedIn', username);
